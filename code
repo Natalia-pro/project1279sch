@@ -7,7 +7,7 @@
 FastBot bot(BOT_TOKEN);
 
 
-uint8_t DHTPin = 4; 
+uint8_t DHTPin = 2; 
 DHT dht(DHTPin, DHTTYPE);                
 float Temperature;
 float Humidity;
