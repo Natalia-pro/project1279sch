@@ -1,0 +1,45 @@
+#define WIFI_SSID "Korki(^.^)"
+#define WIFI_PASS "jyqf2990"
+#define BOT_TOKEN "8218581052:AAH25VBmzxxrV9HA0oO-d9txlBb3PS5W1uc"
+#include "DHT.h"
+#define DHTTYPE DHT11
+#include <FastBot.h>
+FastBot bot(BOT_TOKEN);
+
+
+uint8_t DHTPin = 4; 
+DHT dht(DHTPin, DHTTYPE);                
+float Temperature;
+float Humidity;
+void setup() {
+  connectWiFi();
+
+  bot.attach(newMsg);
+}
+
+void newMsg(FB_msg& msg) {
+  Temperature = dht.readTemperature(); 
+  Humidity = dht.readHumidity(); 
+  bot.sendMessage("temperature:", msg.chatID);
+    bot.sendMessage(String(Temperature), msg.chatID);
+    bot.sendMessage("humidity:", msg.chatID);
+    bot.sendMessage(String(Humidity), msg.chatID);
+}
+
+void loop() {
+  bot.tick();
+}
+
+void connectWiFi() {
+  delay(2000);
+  Serial.begin(115200);
+  Serial.println();
+
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+    if (millis() > 15000) ESP.restart();
+  }
+  Serial.println("Connected");
+}
