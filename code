@@ -1,6 +1,6 @@
-#define WIFI_SSID "Korki(^.^)"
-#define WIFI_PASS "jyqf2990"
-#define BOT_TOKEN "8218581052:AAH25VBmzxxrV9HA0oO-d9txlBb3PS5W1uc"
+#define WIFI_SSID "ssid"
+#define WIFI_PASS "password"
+#define BOT_TOKEN "1234567"
 #include "DHT.h"
 #define DHTTYPE DHT11
 #include <FastBot.h>
